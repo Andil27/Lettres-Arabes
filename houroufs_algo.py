@@ -74,12 +74,13 @@ def Madd(serie):
   serie_jadid = []
   for mot in serie:
     
-    x = mot.split(hrk[0])
+    x = mot[2:4].split(hrk[0])
     y = (hrk[0]+mad[0]).join(x)
     x = y.split(hrk[1])
     y = (hrk[1]+mad[1]).join(x)
     x = y.split(hrk[2])
     y = (hrk[2]+mad[2]).join(x)
+    y = mot[:2] + y + mot[4:]
     
     serie_jadid.append(y)
 
@@ -95,17 +96,16 @@ def Tanwin(serie):
   x = mad.split(" ")
   mad = "".join(x)
   
-
-  #TODO ne mettre le tanwin qu'à la fin
   serie_jadid = []
   for mot in serie:
     
-    x = mot.split(hrk[0])
-    y = (mad[0]).join(x)
+    x = mot[4:].split(hrk[0])
+    y = (mad[0]+'ا').join(x)
     x = y.split(hrk[1])
     y = (mad[1]).join(x)
     x = y.split(hrk[2])
     y = (mad[2]).join(x)
+    y = mot[:4] + y
     
     serie_jadid.append(y)
 
@@ -147,7 +147,7 @@ def Shadda(serie):
     mot2 = []
     for i in range(len(mot)):
       mot2.append(mot[i])
-      if i == 3 or i == 9:
+      if i == 3:
         mot2[i] = "ّ" + mot2[i]
       
     y = "".join(mot2)
@@ -155,6 +155,27 @@ def Shadda(serie):
     
   return serie_jadid
 
+#DONE Rajouer Al
+#DONE Distinguer lunaire et solaire
+def Taarif(serie):
+  
+  hourouf_shamsia = " ت ث د ذ ر ز س ش ص ض ط ظ ل ن"
+
+  serie_jadid = []
+  for mot in serie:  
+    mot = 'ال'+ mot
+    al_harf_al_awwal = mot[2]
+    mot2 = []
+    for i in range(len(mot)):
+      mot2.append(mot[i])
+      if (i == 3) and (al_harf_al_awwal in hourouf_shamsia):
+        mot2[i] = "ّ" + mot2[i]
+    
+
+    y = "".join(mot2) 
+    serie_jadid.append(y)
+    
+  return serie_jadid
 
 
 
@@ -185,22 +206,30 @@ def Cours(lst, lst2,  nomb_mots, harf_awwal, harf_akhir, voy=" ", num = 0):
       B = Tanwin(B)  
       C = Tanwin(C)
 
+
     if num == 15:
-      A = Soukoun(A) 
-      B = Soukoun(B) 
-      C = Soukoun(C) 
+      A = Tanwin(Soukoun(A))
+      B = Tanwin(Soukoun(B))
+      C = Tanwin(Soukoun(C))
 
     if num == 16:
-      A = Shadda(A) 
-      B = Shadda(B) 
-      C = Shadda(C) 
+      A =(Shadda(A))
+      B =(Shadda(B))
+      C =(Shadda(C))
 
+
+    #Soukoun + Taarif 
     if num == 17:
-      A = Soukoun(A) 
-      B = Shadda(B) 
-      C = Soukoun(C)
-      C = Tanwin(C)
-  
+      C = Taarif(Soukoun(C))
+
+    #Madd + Shadda + Taarif
+    if num == 18:
+      C = Taarif(Shadda(Madd(C)))
+     
+     
+       
+
+    
       
 
   L = []
@@ -250,7 +279,7 @@ def print_cours(cours, nb_mots, harf_awwal, harf_akhir):
     print("       COURS ", cours[0], HA[0], "-" , HB[-1])
 
   #8
-  elif cours[0] <= 17:
+  elif cours[0] <= 19:
     HA, HB = cours[1]
     Har = cours[2]
     C = Cours(HA, HB,nb_mots, harf_awwal, harf_akhir,  Har,cours[0])
@@ -323,11 +352,12 @@ C14 = [14, alph, H9]
 C15 = [15, alph, H9]
 C16 = [16, alph, H9]
 C17 = [17, alph, H9]
+C18 = [18, alph, H9]
 
 
 
 
-CC = [C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C15, C16, C17]
+CC = [C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C15, C16, C17, C18]
 
 """
 awwal : Premier Cours
@@ -338,7 +368,7 @@ harf_akhir : nombre de lettres de la dernière série
 
 """
 def COURS_BUILDER(awwal=1, akhir=12, adad_al_kalimates=5, harf_awwal=1, harf_akhir=3): 
-    if(awwal > akhir or awwal <= 0 or akhir > 17  ):
+    if(awwal > akhir or awwal <= 0 or akhir > 18  ):
       print("Erreur sur les numéros de Cours") ; return
     if (adad_al_kalimates < 0  ):
       print("Erreur sur les numéros le nombre de mot") ; return
@@ -358,12 +388,15 @@ nombre_de_lettres_derniere_serie=1
 
 
 niv1 = (1, 7, 10, 1, 1)
-niv2 = (1, 7, 5, 3,3)
-niv3 = (8, 12, 10, 3,3)
-nivX = (8, 16, 10, 3,3)
-nivTest = (17, 17, 30, 3,3)
+niv2 = (1, 7, 5, 3, 3)
+niv3 = (8, 12, 10, 3, 3)
+niv4 = (13, 18, 10, 3, 3)
 
-premier_cours,dernier_cours, nombre_mot, nombre_de_lettres_premiere_serie, nombre_de_lettres_derniere_serie = nivTest
+
+DarsMoujarrab = 18
+nivTajriba = (DarsMoujarrab, DarsMoujarrab, 100, 3,3)
+
+premier_cours,dernier_cours, nombre_mot, nombre_de_lettres_premiere_serie, nombre_de_lettres_derniere_serie = niv4
 
 
 
@@ -376,5 +409,17 @@ COURS_BUILDER(premier_cours,
 
 #Faire une nouvelle fonction OK
 #ajouter le paramètre des lettres OK
-#Régler le problème pour la leçon 8 à 12 (nombre de lettres)
+#Régler le problème pour la leçon 8 à 12 (nombre de lettres) OK
+
+#DONE Mettre les tanwins à la fin
+#DONE Mettre les moudouds avant la fin
+#DONE Rajouter deux leçons
+#TODO Acceptation des arguments (os)
+#TODO Séparation des fichiers
+#TODO Automatisation des tâches
+#TODO Mettre des hamza en bas
+#TODO Faciliter l'ajout de nouvelles leçons
+
+
+
 
