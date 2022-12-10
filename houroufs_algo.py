@@ -208,9 +208,9 @@ def Cours(lst, lst2,  nomb_mots, harf_awwal, harf_akhir, voy=" ", num = 0):
 
 
     if num == 15:
-      A = Tanwin(Soukoun(A))
-      B = Tanwin(Soukoun(B))
-      C = Tanwin(Soukoun(C))
+      A = Soukoun(A)
+      B = Soukoun(B)
+      C = Soukoun(C)
 
     if num == 16:
       A =(Shadda(A))
@@ -222,9 +222,9 @@ def Cours(lst, lst2,  nomb_mots, harf_awwal, harf_akhir, voy=" ", num = 0):
     if num == 17:
       C = Taarif(Soukoun(C))
 
-    #Madd + Shadda + Taarif
+    #Madd + Shadda + Tanwin
     if num == 18:
-      C = Taarif(Shadda(Madd(C)))
+      C = Tanwin(Shadda(Madd(C)))
      
      
        
@@ -391,12 +391,13 @@ niv1 = (1, 7, 10, 1, 1)
 niv2 = (1, 7, 5, 3, 3)
 niv3 = (8, 12, 10, 3, 3)
 niv4 = (13, 18, 10, 3, 3)
+nivIntensif = (17, 18, 30, 3, 3)
 
 
-DarsMoujarrab = 18
-nivTajriba = (DarsMoujarrab, DarsMoujarrab, 100, 3,3)
+DarsMoujarrab = 17
+nivTajriba = (1, 18, 5, 3,3)
 
-premier_cours,dernier_cours, nombre_mot, nombre_de_lettres_premiere_serie, nombre_de_lettres_derniere_serie = niv4
+premier_cours,dernier_cours, nombre_mot, nombre_de_lettres_premiere_serie, nombre_de_lettres_derniere_serie = nivTajriba
 
 
 
@@ -414,10 +415,13 @@ COURS_BUILDER(premier_cours,
 #DONE Mettre les tanwins à la fin
 #DONE Mettre les moudouds avant la fin
 #DONE Rajouter deux leçons
+#DONE Finaliser le code de toutes les leçons
+#TODO Mettre des hamza en bas
+#TODO Recréer les 5 niveaux
+#TODO Première version d'un pdfs complet (PDF Merge)
 #TODO Acceptation des arguments (os)
 #TODO Séparation des fichiers
 #TODO Automatisation des tâches
-#TODO Mettre des hamza en bas
 #TODO Faciliter l'ajout de nouvelles leçons
 
 
