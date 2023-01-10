@@ -257,11 +257,15 @@ def aff_ligne(lst):
   print(' '.join(lst))
 
 def aff_colonne(lst, nb_mots):
+  
   i = 0
   for mots in lst:
+    
     i += 1
     if (i - 1) % nb_mots == 0:
       print("______")
+
+    mots =  ("إِ").join(mots.split("أِ")) 
     print(i, mots)
 
 
@@ -284,7 +288,7 @@ def print_cours(cours, nb_mots, harf_awwal, harf_akhir):
     Har = cours[2]
     C = Cours(HA, HB,nb_mots, harf_awwal, harf_akhir,  Har,cours[0])
     print("       COURS ", cours[0], C[0][-1])
-
+    
 
   
   
@@ -292,10 +296,12 @@ def print_cours(cours, nb_mots, harf_awwal, harf_akhir):
 
   print("######################")
   print("______")  
+    
   
   if cours[0] < 8:
     aff_ligne(HA)
     aff_colonne(C[0], nb_mots) #NBM
+    
 
     print("______")
     print("______")
@@ -311,6 +317,7 @@ def print_cours(cours, nb_mots, harf_awwal, harf_akhir):
   
   aff_ligne(HA + HB)
   aff_colonne(C[2], nb_mots)
+  
 
 
 
@@ -379,7 +386,7 @@ def COURS_BUILDER(awwal=1, akhir=12, adad_al_kalimates=5, harf_awwal=1, harf_akh
     for numero_du_cours in CC[awwal-1:akhir]:
       print_cours(numero_du_cours, adad_al_kalimates, harf_awwal, harf_akhir)
 
-
+#initialisation des variables
 premier_cours=1
 dernier_cours=7
 nombre_mot=10
@@ -387,15 +394,23 @@ nombre_de_lettres_premiere_serie=1
 nombre_de_lettres_derniere_serie=1
 
 
+#Variables des niveau
 niv1 = (1, 7, 10, 1, 1)
 niv2 = (1, 7, 5, 3, 3)
 niv3 = (8, 12, 10, 3, 3)
 niv4 = (13, 18, 10, 3, 3)
 nivIntensif = (17, 18, 30, 3, 3)
 
+exam_niv1 = (7, 7, 50, 1, 1)
+exam_niv2 = (7, 7, 20, 3, 3)
+exam_niv3 = (12, 12, 10, 3, 3)
+exam_niv4 = (13, 18, 10, 3, 3)
 
+
+
+#Variables pour les tests
 DarsMoujarrab = 17
-nivTajriba = (1, 18, 5, 3,3)
+nivTajriba = (9, 12, 30, 3,3)
 
 premier_cours,dernier_cours, nombre_mot, nombre_de_lettres_premiere_serie, nombre_de_lettres_derniere_serie = nivTajriba
 
@@ -425,5 +440,12 @@ COURS_BUILDER(premier_cours,
 #TODO Faciliter l'ajout de nouvelles leçons
 
 
+
+#TODO Actuel
+#DONE Tester avec cours 1
+#TODO Aller chercher la hamza en bas
+#TODO Remplacer toutes les hamza avec kasra par hamza
+"أِ"
+"إِ"
 
 
