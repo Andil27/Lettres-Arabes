@@ -7,13 +7,11 @@ def Harakates(serie, voyelles):
   for mot in serie:
     mot_jadid = []
     
-
     for lettre in mot :
       n = randint(0, len(voyelles) - 1)
       voy = voyelles[n]
       lettre_jadid = lettre + voy
       
-    
       mot_jadid.append(lettre_jadid)
       x = "".join(mot_jadid)
       y = x.split(" ")
@@ -21,8 +19,7 @@ def Harakates(serie, voyelles):
     serie_jadid.append(x)
 
   return serie_jadid
-  #print("serie_jadid :", serie_jadid)
-
+  
 def Madd(serie):
   hrk = " َ ِ ُ"
   x = hrk.split(" ")
