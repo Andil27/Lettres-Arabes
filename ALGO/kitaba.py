@@ -1,5 +1,14 @@
 from ashkal import *
 
+f = open("fichierCoursPrint", "w")
+
+def printInFichier(f,*list):
+  for elem in list:
+    f.write(str(elem)+ " ")
+  f.write("\n")
+
+  
+
 #3
 """Prends en paramètre 2 listes
     Construit une liste de 3 série sur les lettres du cours
@@ -74,7 +83,7 @@ def hark_temp(txt):
 
 
 def aff_ligne(lst):
-  print(' '.join(lst))
+  printInFichier(f, ' '.join(lst))
 
 def aff_colonne(lst, nb_mots):
   
@@ -83,10 +92,10 @@ def aff_colonne(lst, nb_mots):
     
     i += 1
     if (i - 1) % nb_mots == 0:
-      print("______")
+      printInFichier(f, "______")
 
     mots =  ("إِ").join(mots.split("أِ")) 
-    print(i, mots)
+    printInFichier(f, i, mots)
 
 
 """Prends en paramètres des un cours, qui correspond à une liste de mots 
@@ -94,28 +103,28 @@ def aff_colonne(lst, nb_mots):
 def print_cours(cours, nb_mots, harf_awwal, harf_akhir):
   
 
-  print("######################")
+  printInFichier(f, "######################")
   
   #1 à 7
   if cours[0] <= 7 :
     HA, HB = cours[1]
     C = Cours(HA, HB, nb_mots, harf_awwal, harf_akhir)
-    print("       COURS ", cours[0], HA[0], "-" , HB[-1])
+    printInFichier(f, "       COURS ", cours[0], HA[0], "-" , HB[-1])
 
   #8
   elif cours[0] <= 19:
     HA, HB = cours[1]
     Har = cours[2]
     C = Cours(HA, HB,nb_mots, harf_awwal, harf_akhir,  Har,cours[0])
-    print("       COURS ", cours[0], C[0][-1])
+    printInFichier(f, "       COURS ", cours[0], C[0][-1])
     
 
   
   
  
 
-  print("######################")
-  print("______")  
+  printInFichier(f, "######################")
+  printInFichier(f, "______")  
     
   
   if cours[0] < 8:
@@ -123,17 +132,17 @@ def print_cours(cours, nb_mots, harf_awwal, harf_akhir):
     aff_colonne(C[0], nb_mots) #NBM
     
 
-    print("______")
-    print("______")
-    print("______")
+    printInFichier(f, "______")
+    printInFichier(f, "______")
+    printInFichier(f, "______")
     
     
     aff_ligne(HB) 
     aff_colonne(C[1], nb_mots)
 
-    print("______")
-    print("______")
-    print("______")
+    printInFichier(f, "______")
+    printInFichier(f, "______")
+    printInFichier(f, "______")
   
   aff_ligne(HA + HB)
   aff_colonne(C[2], nb_mots)
