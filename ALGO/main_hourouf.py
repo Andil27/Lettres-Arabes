@@ -42,7 +42,8 @@ f.close()
 #DONE Séparation en dossiers
 #DONE Acceptation des arguments (os)
 #DONE Transformation du fichier
-#TODO Creéer des niveaux avec lettres précises
+#DONE Creéer des niveaux avec lettres précises
+#TODO Entrainement vitesse
 #TODO Recréer les 5 niveaux
 #TODO Première version d'un pdfs complet (PDF Merge)
 #TODO Exercice écriture contrôle
@@ -62,4 +63,4 @@ f.close()
 #DONE Changer récation apprès choix isol ou attaché (nombre lettres)
 #DONE voir les controles : analyser tous les input
 #DONE controller 
-#TODO Factoriser
+#DONE Factoriser

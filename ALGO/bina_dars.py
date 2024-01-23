@@ -81,20 +81,12 @@ def controlDefinieArguments():
 
 def ModeBinaDars():
     #Variables des niveau
-    print("Choississez le mode  :")
-    print("Personnifié  (Tapez p)")
-    print("Défini (Tapez d)")
     
     
-    mode = input()
-    while(mode != "p" and mode!= 'd'):
-        mode = input()
-
-    phrase = """
-    "Choississez le mode
-    Personnifié (Tapez p)
-    Défini (Tapez d)"
-    """ 
+    phrase = """Choississez le mode
+Personnifié (Tapez p)
+Défini (Tapez d)
+""" 
     mode = choixDoubleLettres(phrase, "P", "D")
 
     if(mode == "P"):
